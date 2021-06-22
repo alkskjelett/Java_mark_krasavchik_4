@@ -1,0 +1,259 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.2
+-- Dumped by pg_dump version 13.2
+
+-- Started on 2021-06-22 13:51:52
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+DROP DATABASE lab_4;
+--
+-- TOC entry 3011 (class 1262 OID 17036)
+-- Name: lab_4; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE lab_4 WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'Russian_Russia.1251';
+
+
+ALTER DATABASE lab_4 OWNER TO postgres;
+
+\connect lab_4
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 202 (class 1259 OID 17053)
+-- Name: battle_logs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.battle_logs (
+    id_battle_log integer NOT NULL,
+    id_killed integer NOT NULL,
+    id_killer integer NOT NULL,
+    date_kill timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.battle_logs OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 17080)
+-- Name: battle_logs_id_battle_log_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public.battle_logs ALTER COLUMN id_battle_log ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.battle_logs_id_battle_log_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+    CYCLE
+);
+
+
+--
+-- TOC entry 200 (class 1259 OID 17037)
+-- Name: entities; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.entities (
+    id_entity integer NOT NULL,
+    title text NOT NULL,
+    date_death timestamp without time zone,
+    date_create timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.entities OWNER TO postgres;
+
+--
+-- TOC entry 203 (class 1259 OID 17078)
+-- Name: entities_id_entity_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public.entities ALTER COLUMN id_entity ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.entities_id_entity_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+    CYCLE
+);
+
+
+--
+-- TOC entry 201 (class 1259 OID 17045)
+-- Name: players; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.players (
+    id_player integer NOT NULL,
+    nickname text NOT NULL,
+    exp double precision NOT NULL
+);
+
+
+ALTER TABLE public.players OWNER TO postgres;
+
+--
+-- TOC entry 205 (class 1259 OID 17082)
+-- Name: players_id_player_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public.players ALTER COLUMN id_player ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.players_id_player_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+    CYCLE
+);
+
+
+--
+-- TOC entry 3002 (class 0 OID 17053)
+-- Dependencies: 202
+-- Data for Name: battle_logs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.battle_logs (id_battle_log, id_killed, id_killer, date_kill) OVERRIDING SYSTEM VALUE VALUES (89, 120, 119, '2021-06-22 13:48:12.709');
+INSERT INTO public.battle_logs (id_battle_log, id_killed, id_killer, date_kill) OVERRIDING SYSTEM VALUE VALUES (90, 118, 22, '2021-06-22 13:48:12.797');
+INSERT INTO public.battle_logs (id_battle_log, id_killed, id_killer, date_kill) OVERRIDING SYSTEM VALUE VALUES (91, 119, 22, '2021-06-22 13:48:12.891');
+
+
+--
+-- TOC entry 3000 (class 0 OID 17037)
+-- Dependencies: 200
+-- Data for Name: entities; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (97, 'Zombie', NULL, '2021-06-22 13:27:41.153');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (98, 'Skeleton', NULL, '2021-06-22 13:27:41.153');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (99, 'Pig', NULL, '2021-06-22 13:27:41.153');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (100, 'Zombie', NULL, '2021-06-22 13:31:43.565');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (101, 'Skeleton', NULL, '2021-06-22 13:31:43.565');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (102, 'Pig', NULL, '2021-06-22 13:31:43.565');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (103, 'Zombie', NULL, '2021-06-22 13:32:23.634');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (104, 'Skeleton', NULL, '2021-06-22 13:32:23.634');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (105, 'Pig', NULL, '2021-06-22 13:32:23.634');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (106, 'Zombie', NULL, '2021-06-22 13:37:18.206');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (107, 'Skeleton', NULL, '2021-06-22 13:37:18.206');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (108, 'Pig', NULL, '2021-06-22 13:37:18.206');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (109, 'Zombie', NULL, '2021-06-22 13:46:34.544');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (110, 'Skeleton', NULL, '2021-06-22 13:46:34.544');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (111, 'Pig', NULL, '2021-06-22 13:46:34.544');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (112, 'Zombie', NULL, '2021-06-22 13:46:43.562');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (113, 'Skeleton', NULL, '2021-06-22 13:46:43.562');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (114, 'Pig', NULL, '2021-06-22 13:46:43.562');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (115, 'Zombie', NULL, '2021-06-22 13:47:49.511');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (116, 'Skeleton', NULL, '2021-06-22 13:47:49.511');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (117, 'Pig', NULL, '2021-06-22 13:47:49.511');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (118, 'Zombie', NULL, '2021-06-22 13:48:11.453');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (119, 'Skeleton', NULL, '2021-06-22 13:48:11.453');
+INSERT INTO public.entities (id_entity, title, date_death, date_create) OVERRIDING SYSTEM VALUE VALUES (120, 'Pig', NULL, '2021-06-22 13:48:11.453');
+
+
+--
+-- TOC entry 3001 (class 0 OID 17045)
+-- Dependencies: 201
+-- Data for Name: players; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.players (id_player, nickname, exp) OVERRIDING SYSTEM VALUE VALUES (15, 'Human', 0);
+INSERT INTO public.players (id_player, nickname, exp) OVERRIDING SYSTEM VALUE VALUES (16, 'Human', 0);
+INSERT INTO public.players (id_player, nickname, exp) OVERRIDING SYSTEM VALUE VALUES (17, 'Human', 0);
+INSERT INTO public.players (id_player, nickname, exp) OVERRIDING SYSTEM VALUE VALUES (18, 'Human', 0);
+INSERT INTO public.players (id_player, nickname, exp) OVERRIDING SYSTEM VALUE VALUES (19, 'Human', 0);
+INSERT INTO public.players (id_player, nickname, exp) OVERRIDING SYSTEM VALUE VALUES (20, 'Human', 0);
+INSERT INTO public.players (id_player, nickname, exp) OVERRIDING SYSTEM VALUE VALUES (21, 'Human', 0);
+INSERT INTO public.players (id_player, nickname, exp) OVERRIDING SYSTEM VALUE VALUES (22, 'Human', 0);
+
+
+--
+-- TOC entry 3012 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: battle_logs_id_battle_log_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.battle_logs_id_battle_log_seq', 91, true);
+
+
+--
+-- TOC entry 3013 (class 0 OID 0)
+-- Dependencies: 203
+-- Name: entities_id_entity_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.entities_id_entity_seq', 120, true);
+
+
+--
+-- TOC entry 3014 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: players_id_player_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.players_id_player_seq', 22, true);
+
+
+--
+-- TOC entry 2869 (class 2606 OID 17057)
+-- Name: battle_logs battle_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.battle_logs
+    ADD CONSTRAINT battle_logs_pkey PRIMARY KEY (id_battle_log);
+
+
+--
+-- TOC entry 2865 (class 2606 OID 17044)
+-- Name: entities entities_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.entities
+    ADD CONSTRAINT entities_pkey PRIMARY KEY (id_entity);
+
+
+--
+-- TOC entry 2867 (class 2606 OID 17052)
+-- Name: players players_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.players
+    ADD CONSTRAINT players_pkey PRIMARY KEY (id_player);
+
+
+-- Completed on 2021-06-22 13:51:53
+
+--
+-- PostgreSQL database dump complete
+--
+
